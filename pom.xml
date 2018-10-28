@@ -81,6 +81,14 @@
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>3.0.0.M2</version>
         </dependency>
+
+        <!--阿里Json工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+
     </dependencies>
 
     <build>

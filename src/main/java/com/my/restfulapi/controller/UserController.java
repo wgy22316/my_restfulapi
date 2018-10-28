@@ -1,6 +1,7 @@
 package com.my.restfulapi.controller;
 
 
+import com.my.restfulapi.common.annotation.CheckSign;
 import com.my.restfulapi.common.utils.DataResultUtil;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
@@ -20,6 +21,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/getUserInfo")
+    @CheckSign
     public DataResult userDetail(@RequestBody UserInfoRequest userInfoRequest) {
         //全局异常捕获
         User user = userService.getUserInfo(userInfoRequest.getData().getId());
