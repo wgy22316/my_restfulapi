@@ -89,6 +89,12 @@
             <version>1.2.47</version>
         </dependency>
 
+        <!--spring 面向切面aop-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

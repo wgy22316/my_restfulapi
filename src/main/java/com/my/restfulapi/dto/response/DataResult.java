@@ -8,7 +8,7 @@ public class DataResult {
     /**
      * 错误码
      */
-    private Integer code;
+    private String code;
 
     /**
      * 错误消息

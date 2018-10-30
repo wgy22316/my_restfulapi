@@ -7,7 +7,7 @@ public class DataResultUtil {
 
     public static DataResult success(Object object) {
         DataResult dataResult = new DataResult();
-        dataResult.setCode(0);
+        dataResult.setCode("0");
         dataResult.setMsg("success");
         dataResult.setData(object);
         return dataResult;
@@ -17,7 +17,7 @@ public class DataResultUtil {
         return success(null);
     }
 
-    public static DataResult error(Integer code, String msg) {
+    public static DataResult error(String code, String msg) {
         DataResult dataResult = new DataResult();
         dataResult.setCode(code);
         dataResult.setMsg(msg);

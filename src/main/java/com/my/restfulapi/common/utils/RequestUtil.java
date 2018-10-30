@@ -91,11 +91,9 @@ public class RequestUtil {
      * @return
      */
     public static boolean checkParam(JSONObject request) {
-        if (StringUtils.isEmpty(request.getString("appid")) || StringUtils.isEmpty(request.getString("requestId")) ||
-                StringUtils.isEmpty(request.getString("requestId")) || StringUtils.isEmpty(request.getString
+        if (StringUtils.isEmpty(request.getString("appId")) || StringUtils.isEmpty(request.getString("requestId")) || StringUtils.isEmpty(request.getString
                 ("timestamp")) || StringUtils.isEmpty(request.getString("language")) || StringUtils.isEmpty(request
-                .getString("timeZone")) || StringUtils.isEmpty(request
-                .getString("sign"))) {
+                .getString("timeZone")) || StringUtils.isEmpty(request.getString("sign"))) {
             return false;
         }
         return true;
@@ -124,7 +122,7 @@ public class RequestUtil {
      * @return
      */
     public static String checkAppId(JSONObject request) {
-        String appid = request.getString("appid");
+        String appid = request.getString("appId");
         //map 代替
         Map<String, String> appidMap = new HashMap() {
             {
