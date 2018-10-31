@@ -36,7 +36,7 @@ public class RequestSignUtil {
         return md5SignStr;
     }
 
-    public static void buildSign(BaseRequest request){
+    public static void buildBaseRequest(BaseRequest request){
 
         String appId = "1000";
         String requestId = String.valueOf(System.currentTimeMillis());

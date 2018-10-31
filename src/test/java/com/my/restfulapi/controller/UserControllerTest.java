@@ -6,8 +6,6 @@ import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.request.UserInfoVo;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class UserControllerTest {
 
     @Test
@@ -18,7 +16,7 @@ public class UserControllerTest {
         data.setId(1);
         userInfoRequest.setData(data);
 
-        RequestSignUtil.buildSign(userInfoRequest);
+        RequestSignUtil.buildBaseRequest(userInfoRequest);
         System.out.println(JSON.toJSONString(userInfoRequest));
     }
 }

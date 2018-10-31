@@ -1,6 +1,9 @@
 package com.my.restfulapi.third.user.request;
 
-public class BaseRequest<T> {
+import lombok.Data;
+
+@Data
+public class BaseUserRequest<T> {
     /**
      * 请求账号:appId
      */
