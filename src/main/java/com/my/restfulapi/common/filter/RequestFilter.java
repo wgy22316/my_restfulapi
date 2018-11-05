@@ -1,6 +1,6 @@
 package com.my.restfulapi.common.filter;
 
-import com.my.restfulapi.common.utils.RequestUtil;
+import com.my.restfulapi.common.util.RequestUtil;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.OncePerRequestFilter;
 

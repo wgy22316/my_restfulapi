@@ -1,6 +1,6 @@
 package com.my.restfulapi.common.exception;
 
-import com.my.restfulapi.common.utils.DataResultUtil;
+import com.my.restfulapi.common.util.DataResultUtil;
 import com.my.restfulapi.dto.response.DataResult;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -1,6 +1,6 @@
 package com.my.restfulapi.common.filter;
 
-import com.my.restfulapi.common.utils.RequestUtil;
+import com.my.restfulapi.common.util.RequestUtil;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

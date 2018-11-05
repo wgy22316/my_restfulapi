@@ -3,7 +3,7 @@ package com.my.restfulapi.common.aspect;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.my.restfulapi.common.exception.BusinessException;
-import com.my.restfulapi.common.utils.RequestUtil;
+import com.my.restfulapi.common.util.RequestUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

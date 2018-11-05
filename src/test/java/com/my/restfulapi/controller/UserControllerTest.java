@@ -1,7 +1,7 @@
 package com.my.restfulapi.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.my.restfulapi.common.utils.RequestSignUtil;
+import com.my.restfulapi.common.util.RequestSignUtil;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.request.UserInfoVo;
 import org.junit.Test;

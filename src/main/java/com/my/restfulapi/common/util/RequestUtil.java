@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.utils;
+package com.my.restfulapi.common.util;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.StringUtils;

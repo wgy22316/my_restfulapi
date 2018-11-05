@@ -1,6 +1,6 @@
 package com.my.restfulapi.third.user;
 
-import com.my.restfulapi.common.utils.EncryptUtil;
+import com.my.restfulapi.common.util.EncryptUtil;
 import com.my.restfulapi.third.user.request.BaseUserRequest;
 
 import java.util.Map;

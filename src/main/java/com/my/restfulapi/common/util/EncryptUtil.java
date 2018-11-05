@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.utils;
+package com.my.restfulapi.common.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -3,7 +3,7 @@ package com.my.restfulapi.dto.response;
 import lombok.Data;
 
 @Data
-public class DataResult {
+public class DataResult<T> {
 
     /**
      * 错误码
@@ -18,6 +18,6 @@ public class DataResult {
     /**
      * 结果集
      */
-    private Object data;
+    private T data;
 
 }

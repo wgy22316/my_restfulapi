@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.utils;
+package com.my.restfulapi.common.util;
 
 
 import com.my.restfulapi.dto.response.DataResult;
