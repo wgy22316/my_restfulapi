@@ -11,14 +11,14 @@ public class BaseUserAdapter {
 
     private static final String appId = "1000";
     private static final String appKey = "cxC2HMc0gCm0Wk7qqEOCWS0h1FoH3b1z";
-    private final String HOST = "http://127.0.0.1:8090";
+    protected final String HOST = "http://127.0.0.1:8090/";
 
     /**
      * 构造请求公共参数
      *
      * @param request
      */
-    public static void buildBaseRequest(BaseUserRequest request){
+    public void buildBaseRequest(BaseUserRequest request){
 
         String requestId = String.valueOf(System.currentTimeMillis());
         long timestamp = System.currentTimeMillis()/1000;
