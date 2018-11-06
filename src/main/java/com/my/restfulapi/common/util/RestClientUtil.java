@@ -1,16 +1,19 @@
 package com.my.restfulapi.common.util;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
+@Component
 public class RestClientUtil {
 
     private static RestTemplate restTemplate;
@@ -20,7 +23,8 @@ public class RestClientUtil {
      *
      * @param client
      */
-    public static void setRestTemplate(RestTemplate client) {
+    @Autowired
+    public void setRestTemplate(RestTemplate client) {
         restTemplate = client;
     }
 

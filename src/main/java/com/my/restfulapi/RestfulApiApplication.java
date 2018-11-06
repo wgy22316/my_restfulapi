@@ -8,7 +8,16 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 public class RestfulApiApplication {
 
+//    @Autowired
+//    private RestTemplateBuilder templateBuilder;
+
     public static void main(String[] args) {
         SpringApplication.run(RestfulApiApplication.class, args);
     }
+
+//    @Bean
+//    public RestTemplate restTemplate(){
+//        return templateBuilder.build();
+//    }
+
 }

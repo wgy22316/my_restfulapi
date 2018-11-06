@@ -2,7 +2,6 @@ package com.my.restfulapi.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
@@ -13,7 +12,7 @@ import java.net.Proxy;
 import java.net.SocketAddress;
 
 @Configuration
-@ConditionalOnClass(ProxyConfig.class)
+//@ConditionalOnClass(ProxyConfig.class)
 public class RestTemplateConfig {
     @Value("${rest.readTimeOut}")
     private int readTimeout;

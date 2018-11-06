@@ -2,6 +2,7 @@ package com.my.restfulapi.third.user.adapter;
 
 import com.alibaba.fastjson.JSON;
 import com.my.restfulapi.third.user.response.BaseUserResponse;
+import com.my.restfulapi.third.user.response.UserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,9 @@ public class UserAdapterTest {
     @Test
     public void testGetUserInfo(){
         UserAdapter userAdapter = new UserAdapter();
-        BaseUserResponse baseUserResponse = userAdapter.getUserInfo(1);
+        BaseUserResponse<UserDto> baseUserResponse = userAdapter.getUserInfo(11);
+        UserDto userDto = baseUserResponse.getData();
         System.out.println(JSON.toJSONString(baseUserResponse));
+        System.out.println(JSON.toJSONString(userDto));
     }
 }
