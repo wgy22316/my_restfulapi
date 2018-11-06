@@ -19,7 +19,9 @@
         </filter>
         <encoder>
             <pattern>
-                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+
+                <!--%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n-->
+                {&quot;datatype&quot;:0,&quot;business&quot;:&quot;restful-api&quot;,&quot;module&quot;:&quot;restful-api&quot;,&quot;currentTime&quot;:&quot;%d&quot;,&quot;level&quot;:&quot;%-5p&quot;,&quot;method&quot;:&quot;%t&quot;,&quot;interface&quot;:&quot;%C&quot;,&quot;data&quot;:&quot;%m&quot;}%n
             </pattern>
         </encoder>
         <!--滚动策略-->
@@ -49,9 +51,13 @@
     </appender>
 
     <root level="info">
-        <appender-ref ref="consoleLog" />
-        <appender-ref ref="fileInfoLog" />
-        <appender-ref ref="fileErrorLog" />
+        <appender-ref ref="consoleLog"/>
     </root>
+
+    <logger name="com.my.restfulapi" level="info" activity="false">
+        <!--<appender-ref ref="consoleLog"/>-->
+        <appender-ref ref="fileErrorLog"/>
+        <appender-ref ref="fileInfoLog"/>
+    </logger>
 
 </configuration>

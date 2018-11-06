@@ -11,6 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.SocketAddress;
 
+//conditionalOnClass 标识ProxyConfig类存在时解析这个类
 @Configuration
 //@ConditionalOnClass(ProxyConfig.class)
 public class RestTemplateConfig {
@@ -39,6 +40,8 @@ public class RestTemplateConfig {
     @Bean
     public RestTemplate restTemplate(SimpleClientHttpRequestFactory httpClientFactory) {
         RestTemplate restTemplate = new RestTemplate(httpClientFactory);
+        //实现自己的rest请求异常处理，避免resttemplate请求非200状态码抛出异常
+        //restTemplate.setErrorHandler(new RestResponseErrorHandler());
         return restTemplate;
     }
 }

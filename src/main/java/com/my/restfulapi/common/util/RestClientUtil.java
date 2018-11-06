@@ -1,11 +1,10 @@
 package com.my.restfulapi.common.util;
 
 import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 @Component
 public class RestClientUtil {
-
+    private static final Logger logger = LoggerFactory.getLogger(RestClientUtil.class);
     private static RestTemplate restTemplate;
 
     /**
@@ -50,14 +49,35 @@ public class RestClientUtil {
         MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
         headers.setContentType(type);
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-        String result;
+        String params;
         if (obj == null) {
-            result = "{}";
+            params = "{}";
         } else {
-            result = JSON.toJSONString(obj);
+            params = JSON.toJSONString(obj);
         }
-        HttpEntity<String> formEntity = new HttpEntity<String>(result, headers);
-        return restTemplate.postForObject(url, formEntity, String.class);
+        HttpEntity<String> formEntity = new HttpEntity<String>(params, headers);
+        //return restTemplate.postForObject(url, formEntity, String.class);
+        int httpStatus = 0;
+        ResponseEntity<String> responseEntity = null;
+        try {
+            responseEntity = restTemplate.postForEntity(url, formEntity, String.class);
+            httpStatus = responseEntity.getStatusCodeValue();
+            if (httpStatus != 200) {
+                logger.error("请求第三方接口失败，url:{}, request:{}, httpStatus:{}", url, params, httpStatus);
+                //throw new BusinessException("4000", "第三方接口通信失败状态(" + httpStatus + ")");
+            }
+
+            String result = responseEntity.getBody();
+            return result;
+        } catch (Exception e) {
+            if (responseEntity != null) {
+                httpStatus = responseEntity.getStatusCodeValue();
+            }
+            logger.error("请求第三方接口失败，url:{}, request:{}, httpStatus:{}, exception:{}", url, params, httpStatus,
+                    e.getMessage());
+        }
+
+        return null;
     }
 
     /**

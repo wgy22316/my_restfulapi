@@ -59,17 +59,28 @@ public class ControllerLogAspect {
         String requestParamJson = JSON.toJSONString(requestJsonParams);
 
         String reponseResult = JSON.toJSONString(result);
-        logger.info("apiLog=>requestUrl:{}, requestClass:{}, requestMethod:{}, requestParam:{}, ip:{}, errCode:{}, " +
-                        "msg:{}, response:{}, runTime:{}",
-                requestUrl,
-                clasName,
-                methodName,
-                requestParamJson,
-                ip,
-                errCode,
-                msg,
-                reponseResult,
-                runTime
+//        logger.info("apiLog=>requestUrl:{}, requestClass:{}, requestMethod:{}, requestParam:{}, ip:{}, errCode:{}, " +
+//                        "msg:{}, response:{}, runTime:{}",
+//                requestUrl,
+//                clasName,
+//                methodName,
+//                requestParamJson,
+//                ip,
+//                errCode,
+//                msg,
+//                reponseResult,
+//                runTime
+//        );
+
+        logger.info("apiLog=>requestUrl:" + requestUrl +
+                        ", requestClass:" + clasName +
+                        ", requestMethod:" + methodName +
+                        ", requestParam:" + requestParamJson +
+                        ", ip:" + ip +
+                        ", errCode:" + errCode +
+                        ", msg:" + msg +
+                        ", response:" + reponseResult +
+                        ", runTime:" + runTime
         );
         if (resultExeption != null) {
             throw resultExeption;

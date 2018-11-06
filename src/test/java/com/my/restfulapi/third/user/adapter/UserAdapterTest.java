@@ -16,7 +16,11 @@ public class UserAdapterTest {
     @Test
     public void testGetUserInfo(){
         UserAdapter userAdapter = new UserAdapter();
-        BaseUserResponse<UserDto> baseUserResponse = userAdapter.getUserInfo(11);
+        BaseUserResponse<UserDto> baseUserResponse = userAdapter.getUserInfo(1);
+        if(baseUserResponse == null){
+            System.out.println("调用接口失败");
+            return;
+        }
         UserDto userDto = baseUserResponse.getData();
         System.out.println(JSON.toJSONString(baseUserResponse));
         System.out.println(JSON.toJSONString(userDto));
