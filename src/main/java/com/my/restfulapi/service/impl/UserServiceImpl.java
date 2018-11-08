@@ -1,6 +1,7 @@
 package com.my.restfulapi.service.impl;
 
 import com.my.restfulapi.common.exception.BusinessException;
+import com.my.restfulapi.dao.UserDao;
 import com.my.restfulapi.dto.request.AddUserVo;
 import com.my.restfulapi.mapper.UserMapper;
 import com.my.restfulapi.model.User;
@@ -16,6 +17,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public User getUserInfo(Integer id) {

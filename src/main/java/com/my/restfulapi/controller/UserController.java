@@ -3,7 +3,6 @@ package com.my.restfulapi.controller;
 
 import com.my.restfulapi.common.annotation.CheckSign;
 import com.my.restfulapi.common.util.DataResultUtil;
-import com.my.restfulapi.dto.request.AddUserRequest;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
 import com.my.restfulapi.model.User;
