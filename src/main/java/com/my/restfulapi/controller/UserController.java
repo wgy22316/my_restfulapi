@@ -3,6 +3,7 @@ package com.my.restfulapi.controller;
 
 import com.my.restfulapi.common.annotation.CheckSign;
 import com.my.restfulapi.common.util.DataResultUtil;
+import com.my.restfulapi.dto.request.AddUserRequest;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
 import com.my.restfulapi.model.User;
@@ -27,5 +28,10 @@ public class UserController {
         User user = userService.getUserInfo(userInfoRequest.getData().getId());
         return DataResultUtil.success(user);
     }
+
+//    public DataResult addUser(@RequestBody AddUserRequest addUserRequest){
+//
+//        addUserRequest.
+//    }
 
 }
