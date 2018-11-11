@@ -1,6 +1,5 @@
 package com.my.restfulapi;
 
-import com.my.restfulapi.dto.request.AddUserVo;
 import com.my.restfulapi.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,13 +18,13 @@ public class RestfulApiApplicationTests {
     @Autowired
     private UserService userService;
 
-    @Test
-    public void testTddUserList() {
-        AddUserVo addUserVo = new AddUserVo();
-        addUserVo.setUserName("hello");
-        addUserVo.setUserCode("hello");
-
-        boolean result = userService.addUserList(addUserVo);
-        System.out.println(result);
-    }
+//    @Test
+//    public void testTddUserList() {
+//        AddUserVo addUserVo = new AddUserVo();
+//        addUserVo.setUserName("hello");
+//        addUserVo.setUserCode("hello");
+//
+//        boolean result = userService.addUserList(addUserVo);
+//        System.out.println(result);
+//    }
 }

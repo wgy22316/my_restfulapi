@@ -8,10 +8,7 @@ import com.my.restfulapi.dto.response.DataResult;
 import com.my.restfulapi.model.User;
 import com.my.restfulapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -20,17 +17,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/getUserInfo")
-    @CheckSign
-    public DataResult userDetail(@RequestBody UserInfoRequest userInfoRequest) {
-        //全局异常捕获
-        User user = userService.getUserInfo(userInfoRequest.getData().getId());
-        return DataResultUtil.success(user);
+    @GetMapping("ping")
+    public DataResult ping(){
+        return DataResultUtil.success("running");
     }
 
-//    public DataResult addUser(@RequestBody AddUserRequest addUserRequest){
-//
-//        addUserRequest.
+//    @PostMapping("/getUserInfo")
+//    @CheckSign
+//    public DataResult userDetail(@RequestBody UserInfoRequest userInfoRequest) {
+//        //全局异常捕获
+//        User user = userService.getUserInfo(userInfoRequest.getData().getId());
+//        return DataResultUtil.success(user);
 //    }
+
+    @PostMapping("/getUserInfoById")
+    @CheckSign
+    public DataResult getUserById(@RequestBody UserInfoRequest userInfoRequest){
+        User user = userService.getUserById(userInfoRequest.getData().getId());
+        return DataResultUtil.success(user);
+    }
 
 }

@@ -1,15 +1,14 @@
-package com.my.restfulapi.common.dao.impl;
+package com.my.restfulapi.service.impl;
 
-import com.my.restfulapi.common.dao.IBaseDao;
 import com.my.restfulapi.common.mapper.MyMapper;
+import com.my.restfulapi.service.IService;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Condition;
 
 import java.util.List;
 
-public abstract class BaseDao<T> implements IBaseDao<T> {
-
+public abstract class BaseService<T> implements IService<T> {
     @Autowired
     private MyMapper<T> myMapper;
 
