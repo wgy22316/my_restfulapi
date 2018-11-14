@@ -8,9 +8,8 @@ import com.my.restfulapi.dto.response.DataResult;
 import com.my.restfulapi.model.User;
 import com.my.restfulapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -36,7 +35,7 @@ public class UserController {
 
     @PostMapping("/getUserInfoById")
     @CheckSign
-    public DataResult getUserById(@RequestBody UserInfoRequest userInfoRequest){
+    public DataResult getUserById(@RequestBody @Validated UserInfoRequest userInfoRequest){
         User user = userService.getUserById(userInfoRequest.getData().getId());
         return DataResultUtil.success(user);
     }
