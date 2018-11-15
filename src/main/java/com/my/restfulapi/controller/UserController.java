@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/user")
 public class UserController {
 
-
-
     @Autowired
     private UserService userService;
+
 
     @GetMapping("ping")
     public DataResult ping(){
