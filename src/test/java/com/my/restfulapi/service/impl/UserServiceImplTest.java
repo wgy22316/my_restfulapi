@@ -17,7 +17,7 @@ public class UserServiceImplTest extends RestfulApiApplicationTests {
         addUserVo.setUserName("hello");
         addUserVo.setUserCode("hello");
 
-        boolean result = userService.addUserList(addUserVo);
-        System.out.println(result);
+//        boolean result = userService.addUserList(addUserVo);
+//        System.out.println(result);
     }
 }

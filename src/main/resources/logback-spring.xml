@@ -21,7 +21,9 @@
             <pattern>
 
                 <!--%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n-->
-                {&quot;datatype&quot;:0,&quot;business&quot;:&quot;restful-api&quot;,&quot;module&quot;:&quot;restful-api&quot;,&quot;currentTime&quot;:&quot;%d&quot;,&quot;level&quot;:&quot;%-5p&quot;,&quot;method&quot;:&quot;%t&quot;,&quot;interface&quot;:&quot;%C&quot;,&quot;data&quot;:&quot;%m&quot;}%n
+                <!--{&quot;datatype&quot;:0,&quot;business&quot;:&quot;restful-api&quot;,&quot;module&quot;:&quot;restful-api&quot;,&quot;currentTime&quot;:&quot;%d&quot;,&quot;level&quot;:&quot;%-5p&quot;,&quot;method&quot;:&quot;%t&quot;,&quot;interface&quot;:&quot;%C&quot;,&quot;data&quot;:&quot;%m&quot;}%n-->
+
+                {&quot;datatype&quot;:0,&quot;business&quot;:&quot;restful-api&quot;,&quot;module&quot;:&quot;restful-api&quot;,&quot;currentTime&quot;:&quot;%d&quot;,&quot;level&quot;:&quot;%-5p&quot;,&quot;thread&quot;:&quot;%t&quot;,&quot;data&quot;:&quot;%m&quot;}%n
             </pattern>
         </encoder>
         <!--滚动策略-->

@@ -1,6 +1,7 @@
 package com.my.restfulapi.common.exception;
 
 import com.my.restfulapi.common.util.DataResultUtil;
+import com.my.restfulapi.common.util.ThrowableUtil;
 import com.my.restfulapi.dto.response.DataResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -30,7 +31,7 @@ public class ExceptionHandle {
 //            return DataResultUtil.error("9999", e.getMessage());
 //        }
 
-        return DataResultUtil.error("9999", e.getMessage());
+        return DataResultUtil.error("9999", ThrowableUtil.getStackTrace(e));
     }
 
     /**

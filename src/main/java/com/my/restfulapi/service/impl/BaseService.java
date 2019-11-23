@@ -9,7 +9,7 @@ import tk.mybatis.mapper.entity.Condition;
 import java.util.List;
 
 public abstract class BaseService<T> implements IService<T> {
-    @Autowired
+    @Autowired(required = false)
     private MyMapper<T> myMapper;
 
     @Override
