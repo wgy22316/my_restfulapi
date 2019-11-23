@@ -4,7 +4,6 @@ package com.my.restfulapi.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
-import com.my.restfulapi.common.annotation.CheckSign;
 import com.my.restfulapi.common.util.DataResultUtil;
 import com.my.restfulapi.common.util.async.AsyncHelper;
 import com.my.restfulapi.dto.request.AddUserListRequest;
@@ -68,10 +67,10 @@ public class UserController {
 //    }
 
     @PostMapping("/getUserInfoById")
-    @CheckSign
     public DataResult getUserById(@RequestBody @Validated UserInfoRequest userInfoRequest){
         User user = userService.getUserById(userInfoRequest.getData().getId());
-        asyncHelper.withAsync(this::sayHello);
+        //asyncHelper.withAsync(this::sayHello);
+        sayHello();
         return DataResultUtil.success(user);
     }
 

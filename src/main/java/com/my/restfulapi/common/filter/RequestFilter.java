@@ -1,7 +1,6 @@
 package com.my.restfulapi.common.filter;
 
 import com.my.restfulapi.common.util.RequestUtil;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Configuration
+//@Configuration
 public class RequestFilter extends OncePerRequestFilter {
 
     @Override

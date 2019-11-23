@@ -16,7 +16,7 @@ public class CheckSignInterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(CheckSignInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/index.html","/","/user/login","/static/**","*.html");
+//        registry.addInterceptor(CheckSignInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/index.html","/","/user/login","/static/**","*.html");
     }
 }

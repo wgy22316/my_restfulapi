@@ -1,6 +1,7 @@
 package com.my.restfulapi.common.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.my.restfulapi.dto.request.BaseRequest;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,6 +101,24 @@ public class RequestUtil {
     }
 
     /**
+     * 检查请求参数
+     *
+     * @param request
+     * @return
+     */
+    public static boolean checkBaseRequestParam(BaseRequest request) {
+        if (StringUtils.isEmpty(request.getAppId()) ||
+                StringUtils.isEmpty(request.getRequestId()) ||
+                StringUtils.isEmpty(request.getTimestamp()) ||
+                StringUtils.isEmpty(request.getLanguage()) ||
+                StringUtils.isEmpty(request.getTimeZone()) ||
+                StringUtils.isEmpty(request.getSign())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 检查请求时间戳
      *
      * @param request
@@ -116,6 +135,22 @@ public class RequestUtil {
     }
 
     /**
+     * 检查请求时间戳
+     *
+     * @param request
+     * @return
+     */
+    public static boolean checkTimestamp(BaseRequest request) {
+        long timestamp = request.getTimestamp();
+        long currentTimestamp = (System.currentTimeMillis() / 1000);
+
+        if (Math.abs(currentTimestamp - timestamp) > 300) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 检查请求客户端来源
      *
      * @param request
@@ -123,6 +158,30 @@ public class RequestUtil {
      */
     public static String checkAppId(JSONObject request) {
         String appid = request.getString("appId");
+        //map 代替
+        Map<String, String> appidMap = new HashMap() {
+            {
+                put("1000", "cxC2HMc0gCm0Wk7qqEOCWS0h1FoH3b1z");
+                put("1001", "yzZ07jfvfssmgpESGutG6y8NK8Xap31x");
+            }
+        };
+
+        //从配置文件中获取
+        String appKey = appidMap.get(appid);
+        if (StringUtils.isEmpty(appKey)) {
+            return "";
+        }
+        return appKey;
+    }
+
+    /**
+     * 检查请求客户端来源
+     *
+     * @param request
+     * @return
+     */
+    public static String checkAppId(BaseRequest request) {
+        String appid = request.getAppId();
         //map 代替
         Map<String, String> appidMap = new HashMap() {
             {

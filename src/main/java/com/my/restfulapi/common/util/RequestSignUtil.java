@@ -24,6 +24,21 @@ public class RequestSignUtil {
         return true;
     }
 
+    public static boolean checkSign(BaseRequest request, String appKey) {
+        Map<String, String> signMap = new TreeMap<>();
+        signMap.put("appId", request.getAppId());
+        signMap.put("requestId", request.getRequestId());
+        signMap.put("timestamp", String.valueOf(request.getTimestamp()));
+        signMap.put("language", request.getLanguage());
+        signMap.put("timeZone", request.getTimeZone());
+        String sign = request.getSign();
+        String md5Sign = generatorSign((TreeMap) signMap, appKey);
+        if (!md5Sign.equals(sign)) {
+            return false;
+        }
+        return true;
+    }
+
     public static String generatorSign(TreeMap map, String appKey) {
         Set<Map.Entry<String, String>> set = map.entrySet();
         StringBuffer sb = new StringBuffer();
@@ -36,11 +51,11 @@ public class RequestSignUtil {
         return md5SignStr;
     }
 
-    public static void buildBaseRequest(BaseRequest request){
+    public static void buildBaseRequest(BaseRequest request) {
 
         String appId = "1000";
         String requestId = String.valueOf(System.currentTimeMillis());
-        long timestamp = System.currentTimeMillis()/1000;
+        long timestamp = System.currentTimeMillis() / 1000;
         String language = "zh-CN";
         String timeZone = "GMT+8";
         String appKey = "cxC2HMc0gCm0Wk7qqEOCWS0h1FoH3b1z";
