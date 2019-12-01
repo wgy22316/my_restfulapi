@@ -11,8 +11,9 @@ import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
 import com.my.restfulapi.model.User;
 import com.my.restfulapi.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.util.CollectionUtils;
@@ -22,18 +23,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Api("用户操作相关")
 @RestController
 @RequestMapping(value = "/user")
+@Slf4j
 public class UserController {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    //private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
     @Autowired
     private AsyncHelper asyncHelper;
 
+    @ApiOperation(value = "服务ping接口")
     @GetMapping("ping")
-    public DataResult ping(){
+    public DataResult ping() {
 //        String str = JSON.toJSONString("");
 //        String str2 = "";
 //        String str3 = JSON.parseObject(str, String.class);
@@ -50,8 +54,9 @@ public class UserController {
         String jsonList = JSON.toJSONString(list);
         System.out.println(jsonList);
 
-        List list1 = JSON.parseObject(jsonList, new TypeReference<List<Integer>>(){});
-        if(CollectionUtils.isEmpty(list1)){
+        List list1 = JSON.parseObject(jsonList, new TypeReference<List<Integer>>() {
+        });
+        if (CollectionUtils.isEmpty(list1)) {
             System.out.println("222");
         }
 
@@ -66,35 +71,41 @@ public class UserController {
 //        return DataResultUtil.success(user);
 //    }
 
+    @ApiOperation(value = "根据用户Id查询用户信息的接口")
+    //@ApiImplicitParam(name = "userInfoRequest", value = "用户信息参数", required = true,paramType = "UserInfoRequest")
     @PostMapping("/getUserInfoById")
-    public DataResult getUserById(@RequestBody @Validated UserInfoRequest userInfoRequest){
+    public DataResult getUserById(@RequestBody @Validated UserInfoRequest userInfoRequest) {
         User user = userService.getUserById(userInfoRequest.getData().getId());
         //asyncHelper.withAsync(this::sayHello);
+
+        log.info(JSON.toJSONString(user));
         sayHello();
         return DataResultUtil.success(user);
     }
 
+    @ApiOperation(value = "批量添加用户")
     @PostMapping("/addUserList")
-    public DataResult addUserList(@RequestBody AddUserListRequest addUserListRequest){
+    public DataResult addUserList(@RequestBody AddUserListRequest addUserListRequest) {
         userService.batchAddUser(addUserListRequest);
         return DataResultUtil.success();
     }
 
+    @ApiOperation(value = "删除用户")
     @PostMapping("delUserById")
-    public DataResult delUserById(@Param("id") Integer id){
+    public DataResult delUserById(@Param("id") Integer id) {
         userService.delUserById(id);
         return DataResultUtil.success();
     }
 
+    @ApiOperation(value = "获取用户列表")
     @PostMapping("/userInfoList")
-    public DataResult getUserById(){
+    public DataResult getUserById() {
         PageInfo<User> userPageInfo = userService.userInfoList();
         return DataResultUtil.success(userPageInfo);
     }
 
-    private void sayHello(){
-        logger.info("hello");
-        int i = 100 / 0;
+    private void sayHello() {
+        //logger.info("hello");
         System.out.println("hello");
     }
 }

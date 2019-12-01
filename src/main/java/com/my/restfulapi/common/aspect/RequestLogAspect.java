@@ -1,8 +1,9 @@
 package com.my.restfulapi.common.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.my.restfulapi.common.config.FilterConfig;
+import com.my.restfulapi.common.config.CommondConfig;
 import com.my.restfulapi.common.util.ThrowableUtil;
+import com.my.restfulapi.common.util.log4j2.MyLogger;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +12,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -28,9 +28,9 @@ import java.util.Objects;
 @Component
 public class RequestLogAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(RequestLogAspect.class);
+    private static final Logger logger = MyLogger.getInstance(RequestLogAspect.class);
     @Autowired
-    private FilterConfig filterConfig;
+    private CommondConfig commondConfig;
 
     @Pointcut("execution(public * com.my.restfulapi.controller..*.*(..))")
     public void requestLogPointcut() {
@@ -120,7 +120,7 @@ public class RequestLogAspect {
      * @return
      */
     private boolean isIgnoreLogMethod(ProceedingJoinPoint joinPoint) {
-        String ignoreMethodName = filterConfig.getLogConfig().getIgnoreMethodName();
+        String ignoreMethodName = commondConfig.getLogConfig().getIgnoreMethodName();
         if (StringUtils.isNotBlank(ignoreMethodName)) {
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
             String methodName = signature.getMethod().getName();

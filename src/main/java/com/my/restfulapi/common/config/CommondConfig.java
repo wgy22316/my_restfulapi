@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @ConfigurationProperties(prefix="data-config.filter-config")
-public class FilterConfig {
+public class CommondConfig {
     private LogConfig logConfig;
 
     @Data
