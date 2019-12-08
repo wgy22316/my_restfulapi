@@ -16,20 +16,6 @@ public class ExceptionHandle {
     @ResponseBody
     public DataResult handle(Exception e) {
         System.out.println("Exception");
-//        if (e instanceof BusinessException) {
-//            BusinessException businessException = (BusinessException) e;
-//            return DataResultUtil.error(businessException.getErrCode(), businessException.getMessage());
-//        } else if (e instanceof BindException) {
-//            FieldError fieldError = ((BindException) e).getFieldError();
-//            return DataResultUtil.error("2001", fieldError.getDefaultMessage());
-//        } else if (e instanceof MethodArgumentNotValidException) {
-//            BindingResult bindingResult = ((MethodArgumentNotValidException) e).getBindingResult();
-//            FieldError fieldError = bindingResult.getFieldError();
-//            return DataResultUtil.error("2000", fieldError.getDefaultMessage());
-//        } else {
-//            return DataResultUtil.error("9999", e.getMessage());
-//        }
-
         return DataResultUtil.error("9999", "服务内部错误");
     }
 

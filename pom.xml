@@ -176,7 +176,18 @@
             <version>2.5.0</version>
         </dependency>
 
-
+        <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-core -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>10.7.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+            <version>10.7.0</version>
+        </dependency>
 
     </dependencies>
 

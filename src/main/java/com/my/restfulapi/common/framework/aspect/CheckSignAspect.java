@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.aspect;
+package com.my.restfulapi.common.framework.aspect;
 
 import com.my.restfulapi.common.config.RunEnvironmentConfig;
 import com.my.restfulapi.common.exception.BusinessException;
@@ -24,7 +24,7 @@ public class CheckSignAspect {
     @Autowired
     private RunEnvironmentConfig runEnvironmentConfig;
 
-    @Pointcut("@annotation(com.my.restfulapi.common.annotation.CheckSign)")
+    @Pointcut("@annotation(com.my.restfulapi.common.framework.annotation.CheckSign)")
     public void checkSignPointCut() {
 
     }

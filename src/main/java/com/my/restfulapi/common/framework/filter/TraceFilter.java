@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.filter;
+package com.my.restfulapi.common.framework.filter;
 
 
 import com.my.restfulapi.common.util.trace.TraceLogUtil;

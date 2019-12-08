@@ -1,7 +1,7 @@
 package com.my.restfulapi.common.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import com.my.restfulapi.common.annotation.CheckSign;
+import com.my.restfulapi.common.framework.annotation.CheckSign;
 import com.my.restfulapi.common.config.RunEnvironmentConfig;
 import com.my.restfulapi.common.exception.BusinessException;
 import com.my.restfulapi.common.util.RequestSignUtil;

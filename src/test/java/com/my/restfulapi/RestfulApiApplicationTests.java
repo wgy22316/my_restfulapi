@@ -1,5 +1,6 @@
 package com.my.restfulapi;
 
+import com.my.restfulapi.dto.request.AddUserVo;
 import com.my.restfulapi.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = RestfulApiApplication.class)
 public class RestfulApiApplicationTests {
 
     @Test
@@ -18,13 +19,13 @@ public class RestfulApiApplicationTests {
     @Autowired
     private UserService userService;
 
-//    @Test
-//    public void testTddUserList() {
-//        AddUserVo addUserVo = new AddUserVo();
-//        addUserVo.setUserName("hello");
-//        addUserVo.setUserCode("hello");
-//
-//        boolean result = userService.addUserList(addUserVo);
-//        System.out.println(result);
-//    }
+    @Test
+    public void testTddUserList() {
+        AddUserVo addUserVo = new AddUserVo();
+        addUserVo.setUserName("hello");
+        addUserVo.setUserCode("hello");
+
+        boolean result = userService.addUser(addUserVo);
+        System.out.println(result);
+    }
 }

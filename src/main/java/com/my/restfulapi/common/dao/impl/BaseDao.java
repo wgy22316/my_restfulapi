@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class BaseDao<T> implements IBaseDao<T> {
 
-    @Autowired(required = false)
+    @Autowired
     private MyMapper<T> myMapper;
 
     @Override

@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.config;
+package com.my.restfulapi.common.framework.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

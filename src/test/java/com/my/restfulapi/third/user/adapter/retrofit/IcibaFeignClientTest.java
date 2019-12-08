@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RestfulApiApplication.class)
-public class IcibaClientTest {
+public class IcibaFeignClientTest {
     @Autowired
     private RetrofitHelper retrofitHelper;
     @Autowired

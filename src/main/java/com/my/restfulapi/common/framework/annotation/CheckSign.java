@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.annotation;
+package com.my.restfulapi.common.framework.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

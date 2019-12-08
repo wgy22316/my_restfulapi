@@ -9,6 +9,7 @@ public interface IBaseDao<T> {
 
     /**
      * 插入
+     *
      * @param model
      * @return
      */
@@ -16,6 +17,7 @@ public interface IBaseDao<T> {
 
     /**
      * 批量插入
+     *
      * @param models
      */
     int batchSave(List<T> models);
@@ -30,18 +32,21 @@ public interface IBaseDao<T> {
     /**
      * 批量刪除
      * eg：ids -> “1,2,3,4”
+     *
      * @param ids
      */
     int deleteByIds(String ids);
 
     /**
      * 更新
+     *
      * @param model
      */
     int update(T model);
 
     /**
      * 通过ID查找
+     *
      * @param id
      * @return
      */
@@ -60,20 +65,23 @@ public interface IBaseDao<T> {
     /**
      * 通过多个ID查找
      * eg：ids -> “1,2,3,4”
+     *
      * @param ids
      * @return
      */
     List<T> findByIds(String ids);
 
     /**
+     * 根据条件查找
      *
      * @param condition
      * @return
      */
-    List<T> findByCondition(Condition condition);//根据条件查找
+    List<T> findByCondition(Condition condition);
 
     /**
      * 获取所有
+     *
      * @return
      */
     List<T> findAll();

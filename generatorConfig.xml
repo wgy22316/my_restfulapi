@@ -31,7 +31,7 @@
                          targetProject="src/test/resources"/>
 
         <!--生成的mapper(dao)所在的包路径-->
-        <javaClientGenerator targetPackage="com.my.restfulapi.mapper"
+        <javaClientGenerator targetPackage="com.my.restfulapi.mapper.mapper"
                              targetProject="src/test/java"
                              type="XMLMAPPER"/>
 

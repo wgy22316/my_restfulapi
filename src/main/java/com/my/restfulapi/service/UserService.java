@@ -8,9 +8,9 @@ import com.my.restfulapi.model.User;
 
 public interface UserService {
 
-//    User getUserInfo(Integer id);
+    User getUserInfo(Integer id);
 
-    boolean addUserList(AddUserVo addUserVo);
+    boolean addUser(AddUserVo addUserVo);
 
     User getUserById(Integer id);
 

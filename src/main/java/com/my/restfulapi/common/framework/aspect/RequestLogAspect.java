@@ -1,9 +1,10 @@
-package com.my.restfulapi.common.aspect;
+package com.my.restfulapi.common.framework.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.my.restfulapi.common.config.CommondConfig;
+import com.my.restfulapi.common.framework.config.CommondConfig;
 import com.my.restfulapi.common.util.ThrowableUtil;
 import com.my.restfulapi.common.util.log4j2.MyLogger;
+import com.my.restfulapi.dto.response.DataResult;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -58,29 +59,9 @@ public class RequestLogAspect {
 //                msg = e.getMessage();
 //
 //            }
-
             buildFailResultLog(e, stringBuilder);
             throw e;
         }
-
-
-        //String requestParamJson = JSON.toJSONString(requestJsonParams);
-
-//        String reponseResult = JSON.toJSONString(result);
-//        logger.info("apiLog=>requestUrl:" + requestUrl +
-//                ", requestClass:" + clasName +
-//                ", requestMethod:" + methodName +
-//                ", requestParam:" + requestParamJson +
-//                ", ip:" + ip +
-//                ", errCode:" + errCode +
-//                ", msg:" + msg +
-//                ", response:" + reponseResult +
-//                ", runTime:" + runTime
-//        );
-//        if (resultExeption != null) {
-//            throw resultExeption;
-//        }
-
     }
 
     private StringBuilder buildRequestArgs(ProceedingJoinPoint joinPoint) {
@@ -139,12 +120,17 @@ public class RequestLogAspect {
     }
 
     private void buildSuccessResultLog(Object retObj, StringBuilder stringBuilder, Long startTime) {
-        if (retObj instanceof String) {
+        long runTime = System.currentTimeMillis() - startTime;
+        if(retObj instanceof DataResult){
+            DataResult dataResult = (DataResult) retObj;
+            dataResult.setElapsedMilliseconds(runTime);
+            stringBuilder.append(" result=>" + JSON.toJSONString(dataResult));
+        }else if (retObj instanceof String) {
             stringBuilder.append(" result=>" + retObj);
         } else {
             stringBuilder.append(" result=>" + JSON.toJSONString(retObj));
         }
-        long runTime = System.currentTimeMillis() - startTime;
+
         stringBuilder.append(", runTime=>").append(runTime);
         logger.info("请求日志: {}", stringBuilder.toString());
     }
