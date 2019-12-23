@@ -196,6 +196,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--打包jar需要制定main入口否则不能执行-->
+                <configuration>
+                    <mainClass>com.my.restfulapi.RestfulApiApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
