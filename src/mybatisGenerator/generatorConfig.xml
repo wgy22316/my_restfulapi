@@ -24,15 +24,15 @@
 
         <!--生成的实体类所在的包路径-->
         <javaModelGenerator targetPackage="com.my.restfulapi.model"
-                            targetProject="src/test/java"/>
+                            targetProject="../../src/test/java"/>
 
         <!--生成的sql mapper xml 所在路径-->
         <sqlMapGenerator targetPackage="mapper"
-                         targetProject="src/test/resources"/>
+                         targetProject="../../src/test/resources"/>
 
         <!--生成的mapper(dao)所在的包路径-->
         <javaClientGenerator targetPackage="com.my.restfulapi.mapper.mapper"
-                             targetProject="src/test/java"
+                             targetProject="../../src/test/java"
                              type="XMLMAPPER"/>
 
         <!--生成的表名对应的实体类名字 不指定实体类名字，则根据根据表名自动转换-->

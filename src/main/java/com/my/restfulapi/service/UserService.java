@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.my.restfulapi.dto.request.AddUserListRequest;
 import com.my.restfulapi.dto.request.AddUserVo;
 import com.my.restfulapi.model.User;
+import org.springframework.util.concurrent.ListenableFuture;
 
 public interface UserService {
 
@@ -19,4 +20,10 @@ public interface UserService {
     boolean delUserById(Integer id);
 
     PageInfo<User> userInfoList();
+
+    ListenableFuture<Boolean> isNewCustomerFuture();
+
+    boolean addUser2();
+
+    boolean addUser3();
 }

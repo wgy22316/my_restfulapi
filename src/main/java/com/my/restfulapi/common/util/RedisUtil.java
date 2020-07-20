@@ -1,5 +1,7 @@
 package com.my.restfulapi.common.util;
 
+import com.my.restfulapi.common.util.log4j2.MyLogger;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -10,8 +12,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+
 @Component
 public class RedisUtil {
+    Logger logger = MyLogger.getInstance(RedisUtil.class);
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -83,7 +87,12 @@ public class RedisUtil {
      * @return 值
      */
     public Object get(String key) {
-        return key == null ? null : redisTemplate.opsForValue().get(key);
+        try {
+            return key == null ? null : redisTemplate.opsForValue().get(key);
+        } catch (Exception e) {
+            logger.error("redis exception:{}", ThrowableUtil.getStackTrace(e));
+            return null;
+        }
     }
 
     /**

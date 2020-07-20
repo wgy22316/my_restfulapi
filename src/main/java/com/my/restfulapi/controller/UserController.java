@@ -16,8 +16,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Api("用户操作相关")
 @RestController
@@ -34,6 +39,16 @@ public class UserController {
     @ApiOperation(value = "服务ping接口")
     @GetMapping("ping")
     public DataResult ping() {
+        ListenableFuture<Boolean> booleanListenableFuture = userService.isNewCustomerFuture();
+        try {
+            Boolean falg = booleanListenableFuture.get(2, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
         return DataResultUtil.success("running");
     }
 
@@ -48,7 +63,7 @@ public class UserController {
     @ApiOperation(value = "根据用户Id查询用户信息的接口")
     //@ApiImplicitParam(name = "userInfoRequest", value = "用户信息参数", required = true,paramType = "UserInfoRequest")
     @PostMapping("/getUserInfoById")
-    @CheckSign
+    //@CheckSign
     public DataResult getUserById(@RequestBody @Validated UserInfoRequest userInfoRequest) {
         User user = userService.getUserById(userInfoRequest.getData().getId());
         //asyncHelper.withAsync(this::sayHello);
@@ -82,5 +97,16 @@ public class UserController {
     private void sayHello() {
         //logger.info("hello");
         System.out.println("hello");
+    }
+
+    @PostMapping("/test1")
+    public void testRequestTransection(){
+        userService.addUser2();
+    }
+
+
+    @PostMapping("/test2")
+    public void testRequestTransection2(){
+        userService.addUser3();
     }
 }

@@ -1,4 +1,4 @@
-package com.my.restfulapi.common.util;
+package com.my.restfulapi.common.util.mapper;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

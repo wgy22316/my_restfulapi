@@ -3,21 +3,19 @@ package com.my.restfulapi.common.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
 
 
-@Configuration
+//@Configuration
 @PropertySource(value = "classpath:application.properties")
 public class DruidConfiguration {
     @Bean
-    @ConfigurationProperties(prefix = "sharding.jdbc.datasource")
+    //@ConfigurationProperties(prefix = "sharding.jdbc.datasource")
     public DataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
         return druidDataSource;

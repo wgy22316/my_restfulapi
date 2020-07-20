@@ -24,7 +24,7 @@
 
         <!--生成的实体类所在的包路径-->
         <javaModelGenerator targetPackage="com.my.restfulapi.model"
-                            targetProject="src/test/java"/>
+                            targetProject="../../../src/test/java"/>
 
         <!--生成的sql mapper xml 所在路径-->
         <sqlMapGenerator targetPackage="mapper"
