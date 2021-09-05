@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.my.restfulapi.common.framework.annotation.CheckSign;
 import com.my.restfulapi.common.util.DataResultUtil;
 import com.my.restfulapi.common.util.async.AsyncHelper;
+import com.my.restfulapi.common.util.log4j2.MyLogger;
 import com.my.restfulapi.dto.request.AddUserListRequest;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
@@ -16,19 +17,18 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Api("用户操作相关")
 @RestController
 @RequestMapping(value = "/user")
 @Slf4j
 public class UserController {
+    private MyLogger logger = MyLogger.getInstance(UserController.class);
 
     //private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
@@ -36,19 +36,12 @@ public class UserController {
     @Autowired
     private AsyncHelper asyncHelper;
 
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+
     @ApiOperation(value = "服务ping接口")
     @GetMapping("ping")
     public DataResult ping() {
-        ListenableFuture<Boolean> booleanListenableFuture = userService.isNewCustomerFuture();
-        try {
-            Boolean falg = booleanListenableFuture.get(2, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
         return DataResultUtil.success("running");
     }
 
@@ -95,18 +88,41 @@ public class UserController {
     }
 
     private void sayHello() {
-        //logger.info("hello");
         System.out.println("hello");
     }
 
     @PostMapping("/test1")
-    public void testRequestTransection(){
-        userService.addUser2();
+    public DataResult testRequestTransection1() {
+//        for (int i = 0; i < 10; i++) {
+//            userService.isNewFuture();
+//        }
+//        userService.addUser2();
+
+        for (int i = 0; i < 1000; i++) {
+            executorService.submit(() -> {
+                logger.info(System.currentTimeMillis() + "_hhhhhhh");
+            });
+
+        }
+        return DataResultUtil.success();
     }
 
 
     @PostMapping("/test2")
-    public void testRequestTransection2(){
+    public DataResult testRequestTransection2(){
         userService.addUser3();
+        return DataResultUtil.success();
+    }
+
+    @PostMapping("/test3")
+    public DataResult testRequestTransection3(){
+        userService.addUser4();
+        return DataResultUtil.success();
+    }
+
+    @PostMapping("/test4")
+    public DataResult testRequestTransection4(){
+        userService.addUser5();
+        return DataResultUtil.success();
     }
 }
