@@ -21,9 +21,13 @@ public interface UserService {
 
     PageInfo<User> userInfoList();
 
-    ListenableFuture<Boolean> isNewCustomerFuture();
+    ListenableFuture<Boolean> isNewFuture();
 
     boolean addUser2();
 
     boolean addUser3();
+
+    boolean addUser4();
+
+    boolean addUser5();
 }
