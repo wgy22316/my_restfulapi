@@ -1,5 +1,7 @@
 package com.my.restfulapi.controller;
 
+import com.my.restfulapi.common.event.BaseEvent;
+import com.my.restfulapi.common.event.DomainEventPublisherImpl;
 import com.my.restfulapi.common.util.DataResultUtil;
 import com.my.restfulapi.common.util.threadpool.DynamicThreadPoolManager;
 import com.my.restfulapi.common.util.threadpool.MyThreadPoolExecutor;
@@ -26,6 +28,8 @@ public class IndexController {
 
     @Resource
     private DynamicThreadPoolManager dynamicThreadPoolManager;
+    @Resource
+    private DomainEventPublisherImpl domainEventPublisher;
 
     @GetMapping("threadPoolTest")
     public DataResult threadPoolTest() {
@@ -57,5 +61,11 @@ public class IndexController {
         }
 
         return DataResultUtil.success();
+    }
+
+    @GetMapping("testEvent")
+    public void testEvent() {
+        BaseEvent baseEvent = new BaseEvent("111111", "success");
+        domainEventPublisher.publishEvent(baseEvent);
     }
 }
