@@ -7,6 +7,8 @@ import com.my.restfulapi.common.framework.annotation.CheckSign;
 import com.my.restfulapi.common.util.DataResultUtil;
 import com.my.restfulapi.common.util.async.AsyncHelper;
 import com.my.restfulapi.common.util.log4j2.MyLogger;
+import com.my.restfulapi.common.util.threadpool.DynamicThreadPoolManager;
+import com.my.restfulapi.common.util.threadpool.MyThreadPoolExecutor;
 import com.my.restfulapi.dto.request.AddUserListRequest;
 import com.my.restfulapi.dto.request.UserInfoRequest;
 import com.my.restfulapi.dto.response.DataResult;
@@ -20,8 +22,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import javax.annotation.Resource;
 
 @Api("用户操作相关")
 @RestController
@@ -36,8 +37,9 @@ public class UserController {
     @Autowired
     private AsyncHelper asyncHelper;
 
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
-
+    //ExecutorService executorService = Executors.newFixedThreadPool(10);
+    @Resource
+    private DynamicThreadPoolManager dynamicThreadPoolManager;
 
     @ApiOperation(value = "服务ping接口")
     @GetMapping("ping")
@@ -98,12 +100,25 @@ public class UserController {
 //        }
 //        userService.addUser2();
 
+        logger.info("testRequestTransection1");
+        MyThreadPoolExecutor myThreadPoolExecutor = dynamicThreadPoolManager.getThreadPoolExecutor("test1");
+
         for (int i = 0; i < 1000; i++) {
-            executorService.submit(() -> {
+//            executorService.submit(() -> {
+//                logger.info(System.currentTimeMillis() + "_hhhhhhh");
+//            });
+
+//            executorService.submit(new MDCRunnable(()->{
+//                logger.info(System.currentTimeMillis() + "_hhhhhhh");
+//            }));
+
+
+            myThreadPoolExecutor.submit(() -> {
                 logger.info(System.currentTimeMillis() + "_hhhhhhh");
             });
 
         }
+
         return DataResultUtil.success();
     }
 
