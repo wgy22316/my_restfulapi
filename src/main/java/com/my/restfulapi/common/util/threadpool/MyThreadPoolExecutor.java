@@ -1,6 +1,7 @@
 package com.my.restfulapi.common.util.threadpool;
 
 import org.apache.ibatis.transaction.Transaction;
+import org.slf4j.MDC;
 
 import java.util.Map;
 import java.util.concurrent.*;
@@ -73,7 +74,7 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
     @Override
     public Future<?> submit(Runnable task) {
         runnableNameMap.putIfAbsent(task.getClass().getSimpleName(), defaultTaskName);
-        return super.submit(task);
+        return super.submit(wrapMDC(task));
     }
 
     @Override
@@ -114,6 +115,34 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
         if (t != null) {
             System.out.println(t.getMessage());
         }
+    }
+
+    public Runnable wrapMDC(final Runnable runnable) {
+        Map contextMap = MDC.getCopyOfContextMap();
+        return () -> {
+            try {
+                if (contextMap != null) {
+                    MDC.setContextMap(contextMap);
+                }
+                runnable.run();
+            } finally {
+                MDC.clear();
+            }
+        };
+    }
+
+    private <T> Callable<T> wrapMDC(final Callable<T> task) {
+        Map contextMap = MDC.getCopyOfContextMap();
+        return () -> {
+            try {
+                if (contextMap != null) {
+                    MDC.setContextMap(contextMap);
+                }
+                return task.call();
+            } finally {
+                MDC.clear();
+            }
+        };
     }
 }
 

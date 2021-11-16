@@ -6,7 +6,8 @@ import com.my.restfulapi.common.util.trace.TraceLogUtil;
 import javax.servlet.*;
 import java.io.IOException;
 
-import static com.my.restfulapi.common.util.trace.TraceLogUtil.*;
+import static com.my.restfulapi.common.util.trace.TraceLogUtil.generateDefaultTraceLogIdPrefix;
+import static com.my.restfulapi.common.util.trace.TraceLogUtil.generateRandomSed;
 
 public class TraceFilter implements Filter {
     @Override
@@ -19,6 +20,7 @@ public class TraceFilter implements Filter {
         String traceId = generateRandomSed(generateDefaultTraceLogIdPrefix());
         TraceLogUtil.put(traceId);
         filterChain.doFilter(servletRequest, servletResponse);
+        TraceLogUtil.remove();
     }
 
     @Override

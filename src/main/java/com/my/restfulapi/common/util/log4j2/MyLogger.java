@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 
-public class MyLogger implements Logger{
+public class MyLogger implements Logger {
     private final Logger logger;
 
     private final static String WRAPPER = "";
@@ -57,7 +57,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void trace(String msg, Throwable t) {
-        logger.trace(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.trace(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t,
+                true)) + WRAPPER);
     }
 
     @Override
@@ -87,7 +88,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void trace(Marker marker, String msg, Throwable t) {
-        logger.trace(marker, WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.trace(marker,
+                WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
     }
 
     @Override
@@ -117,7 +119,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void debug(String msg, Throwable t) {
-        logger.debug(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.debug(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t,
+                true)) + WRAPPER);
     }
 
     @Override
@@ -151,7 +154,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void debug(Marker marker, String msg, Throwable t) {
-        logger.debug(marker, WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.debug(marker,
+                WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
     }
 
     @Override
@@ -215,7 +219,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void info(Marker marker, String msg, Throwable t) {
-        logger.info(marker, WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.info(marker,
+                WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
     }
 
     @Override
@@ -279,7 +284,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void warn(Marker marker, String msg, Throwable t) {
-        logger.warn(marker, WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.warn(marker,
+                WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
     }
 
     @Override
@@ -309,7 +315,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void error(String msg, Throwable t) {
-        logger.error(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.error(WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t,
+                true)) + WRAPPER);
     }
 
     @Override
@@ -343,7 +350,8 @@ public class MyLogger implements Logger{
 
     @Override
     public void error(Marker marker, String msg, Throwable t) {
-        logger.error(marker, WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
+        logger.error(marker,
+                WRAPPER + replaceSpecialChar(msg) + " " + replaceSpecialChar(ThrowableUtil.getStackTrace(t, true)) + WRAPPER);
     }
 
     public String formatLogData(LogData data) {
@@ -359,12 +367,11 @@ public class MyLogger implements Logger{
         if (StringUtils.isBlank(src)) {
             return "";
         }
-
         String traceId = TraceLogUtil.get();
         if (StringUtils.isBlank(traceId)) {
             return EscapeJsonUtil.escapeJson(src);
         }
-        return "TraceID[" + traceId + "], " + EscapeJsonUtil.escapeJson(src);
+        return "TraceID[" + traceId + "]," + EscapeJsonUtil.escapeJson(src);
     }
 
     private String format(String template, Object... values) {
